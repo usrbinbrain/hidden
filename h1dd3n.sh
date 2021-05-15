@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
-# Hidden your localhost service thought onion network
+#
+# Script Name   :h1dd3n.sh
+# Description   :Put your Linux service behind an onion URL using tor package.
+# Args          :Require a localhost port service as argument.
+# Script repo   :https://github.com/tr4kthebox/hidden
+# Author        :G.A.Gama
 
 hidding () {
 	lport="$1"
