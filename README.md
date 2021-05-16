@@ -9,7 +9,7 @@ Put your Linux service behind an onion URL using tor package.
 Clone repo and enable execution with follow line.
 
 ```bash
-git clone https://github.com/tr4kthebox/hidden.git && cd hidden && sudo chmod +x h1dd3n.sh
+git clone https://github.com/usrbinbrain/hidden.git && cd hidden && sudo chmod +x h1dd3n.sh
 ```
 ***
 
