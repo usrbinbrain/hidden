@@ -2,7 +2,9 @@
 
 Hidden fun.
 
-Put your Linux service behind an onion URL using tor package.
+Share your localhost service behind an onion URL using tor package.
+
+The `h1dd3n.sh` require `tor` package to perform share of localhost service port.
 
 ### _Install._
 
