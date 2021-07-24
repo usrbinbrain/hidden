@@ -23,7 +23,9 @@ Just run the script with localhost port service, the bellow example use service 
 ./h1dd3n.sh 80
 ```
 
-After run, you have a onion url.
+After run, you have a onion url sharing you service o onion network.
 
-[![N|Solid](https://i.imgur.com/QQ10ttP.png)](https://nodesource.com/products/nsolid)
+In this example below, the `localhost service` can be accessed by the onion address `phwqer5apszjffqxvqpjfeskc27mmze363g5krajghc36cmjztp65pyd.onion` on port `80`.
+
+[![N|Solid](https://i.imgur.com/pj64epv.png)](https://nodesource.com/products/nsolid)
 ***
