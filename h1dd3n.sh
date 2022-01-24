@@ -3,24 +3,42 @@
 # Script Name   :h1dd3n.sh
 # Description   :Put your Linux service behind an onion URL using tor package.
 # Args          :Require a localhost port service as argument.
-# Script repo   :https://github.com/tr4kthebox/hidden
-# Author        :G.A.Gama
+# Script repo   :https://github.com/usrbinbrain/hidden
+# Author        :G.A.Gama (g8gama@pm.me)
 
+# Function to create tor configuration.
 hidding () {
+	
+	# Localhost port.
 	lport="$1"
-	[[ -z "$lport" ]] && echo -e "[-] Exec: \e[1m $0 localhost_port\e[0m" && exit
-	user=$(sudo grep '/var/lib/tor' /etc/passwd | cut -d : -f1)
+	[[ -z ${lport} ]] && echo -e "[-] Exec: $0 <your_localhost_service_port>" && exit
+
+	# Set tor default user.
+	user=$(awk -F':' '/lib\/tor/ {print$1}' /etc/passwd)
 	
-	sudo echo -e "# Hidden service for 127.0.0.1:$lport.\nHiddenServiceDir /var/lib/tor/""$lport""_service/\nHiddenServicePort $lport 127.0.0.1:$lport\n\n" >> /etc/tor/torrc
-	sudo mkdir -p /var/lib/tor/"$lport"_service > /dev/null
-	sudo chown "$user":"$user" /var/lib/tor/"$lport"_service/
-	sudo chmod 700 /var/lib/tor/"$lport"_service/
+	sudo echo -e "# Hidden service for 127.0.0.1:${lport}.\nHiddenServiceDir /var/lib/tor/${lport}_service/\nHiddenServicePort ${lport} 127.0.0.1:${lport}\n\n" >> /etc/tor/torrc
+
+	# Set configuration dir name.
+	config_dir="/var/lib/tor/${lport}_service"
+
+	# Check/Create config dir full path.
+	[[ ! -d ${config_dir} ]] && sudo mkdir -p ${config_dir} >&-
+	
+	# Set service user permitions.
+	sudo chown ${user}:${user} ${config_dir}
+	sudo chmod 700 ${config_dir}
+
+	# Stop any tor service to perform new share.
 	sudo systemctl stop tor &&
-	sudo -u "$user" tor & disown
-	
+	# Start tor service.
+	sudo -u ${user} tor & disown
+
+	# Wait tor generate onion URL.	
 	sleep 5
-	onionway=$(sudo cat /var/lib/tor/"$lport"_service/hostname)
-    	echo -e "\n\n[+] Service \e[1m127.0.0.1:$lport\e[0m avaliable on: \e[1m$onionway:$lport\e[0m\n\n"
+	# Show onion URL information.
+	onionway=$(<"${config_dir}"/hostname)
+    	echo -e "\n\n[+] Service \e[1m127.0.0.1:${lport}\e[0m avaliable on: \e[1m${onionway}:${lport}\e[0m\n\n"
 }
 
-which tor &>/dev/null && hidding "$1" || echo "[-] Need install tor package !"
+# Check tor and start execution script or show tor install message.
+which tor &>/dev/null && hidding "$1" || echo "[-] Need install tor package (https://linux.die.net/man/1/tor)."
