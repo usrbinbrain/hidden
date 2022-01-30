@@ -1,5 +1,9 @@
 # Hidden.
 
+![GitHub repo size](https://img.shields.io/github/repo-size/usrbinbrain/hidden)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/usrbinbrain/hidden)
+![GitHub top language](https://img.shields.io/github/languages/top/usrbinbrain/hidden?color=gree&label=Shell%20)
+
 
 [<img alt="alt_text" width="35px" src="https://cdn0.iconfinder.com/data/icons/flat-round-system/512/tor-512.png" />](https://linux.die.net/man/1/tor/) 
 [<img alt="alt_text" width="35px" src="https://awesomeopensource.com/awesome.gif" />](https://awesomeopensource.com/project/usrbinbrain/hidden/)
